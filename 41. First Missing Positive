@@ -1,0 +1,18 @@
+要在O(n)时间和O(1)空间的限制下找出最小的不在数组中的正数。
+不能另外开辟空间（比如使用一个哈希表记录已经出现过的正数），那就只能对原来的数组进行修改了。主要是要注意到正数是1,2,3,4，…，那我们可以把1放在0位置，2放在1位置，…，这样只要再次遍历数组，看i下标的位置是不是i + 1就是满足题意的一种解法了。
+还有一点要注意的是swap过后，还要看被swap的那个位置的元素，是不是也在numset里面，不然的话如果把它交换到前面去了，后面就遍历不到它了。所以应该用个while循环来fix这个bug。交了个WA：[-1,4,2,1,9,10]，比如这个样例，交换4的时候，把3位置的1交换到前面去了，后面又遍历不到这个1，那1就放错了位置，所以是不行滴。
+
+# swap the numbers in nums like [1,2,3,...] to find which subscript doesn't match
+        numset = set([i for i in range(len(nums))])
+        for i, v in enumerate(nums):
+            # to avoid loss of nums[cur - 1] due to the swap
+            cur = v
+            while cur in numset and nums[cur - 1] != cur:
+                # swap with the (v-1)th element
+                nums[cur - 1], nums[i] = nums[i], nums[cur - 1]
+                cur = nums[i]
+            # print(nums)
+        for i in range(len(nums)):
+            if nums[i] != i + 1:
+                return i + 1
+        return len(nums) + 1
