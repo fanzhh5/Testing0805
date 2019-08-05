@@ -1,0 +1,13 @@
+        def happyChange(n: int):
+            res = 0
+            while n:
+                n, a = divmod(n, 10)
+                res += a*a
+            return res
+        
+        seen = set()
+        while(n not in seen):
+            seen.add(n)
+            n = happyChange(n)
+        
+        return n == 1
