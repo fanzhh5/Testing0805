@@ -1,0 +1,10 @@
+        if not head or not head.next : return head
+        
+        def helper(head: ListNode) -> List[ListNode]:
+            if not head or not head.next: return [head, head]
+            curhead, curend = helper(head.next)
+            curend.next = head
+            head.next = None
+            return curhead, head
+        
+        return helper(head)[0]
