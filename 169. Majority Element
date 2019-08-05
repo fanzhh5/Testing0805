@@ -1,0 +1,13 @@
+算法：摩尔投票（Boyer-Moore Algorithm）
+适用范围:频数>[n/2]的元素一定存在
+先初始化ret为第一个元素，count为1，对于后面的每个元素，跟ret相同count++，不同count--，count为0时重新初始化。相当于每次抵消掉不同的元素。
+        # Boyer-Moore Voting Algorithm
+        ret = nums[0]
+        count = 1
+        for v in nums[1:]:
+            if not count:
+                ret = v
+                count = 1
+            else:
+                count += 1 if ret == v else -1
+        return ret
