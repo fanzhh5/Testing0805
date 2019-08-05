@@ -1,0 +1,36 @@
+        if not l1 :
+            return l2
+        elif not l2:
+            return l1
+        p1 = l1
+        p2 = l2
+        prenode = ListNode(0)
+        head = prenode
+        while(p1 and p2):
+            if p1.val == p2.val:
+                curnode1 = ListNode(p1.val)
+                prenode.next = curnode1
+                prenode = prenode.next
+                curnode2 = ListNode(p2.val)
+                prenode.next = curnode2
+                prenode = prenode.next
+                p1 = p1.next
+                p2 = p2.next
+            elif p1.val < p2.val:
+                curnode1 = ListNode(p1.val)
+                prenode.next = curnode1
+                prenode = prenode.next
+                p1 = p1.next
+            else:
+                curnode2 = ListNode(p2.val)
+                prenode.next = curnode2
+                prenode = prenode.next
+                p2 = p2.next
+        if not p1 and not p2:
+            return head.next
+        elif not p1:
+            prenode.next = p2
+            return head.next
+        else:
+            prenode.next = p1
+            return head.next
