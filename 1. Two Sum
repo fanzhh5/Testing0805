@@ -1,0 +1,7 @@
+        if not nums: return []
+        idxes = collections.defaultdict(int)
+        for i, v in enumerate(nums):
+            if target - v in idxes:
+                return [idxes[target - v], i]
+            idxes[v] = i
+        return []
