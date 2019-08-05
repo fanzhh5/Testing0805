@@ -1,0 +1,26 @@
+        nums.sort()
+        n = len(nums)
+        res = set()
+        # print(nums)
+        for i, v in enumerate(nums):
+            # prune
+            if i >= 1 and v == nums[-1]:
+                continue
+            j = i + 1
+            k = n - 1
+            # if v == -1:
+            #     print("-1", nums[j], nums[k])
+            while j < k:
+                # if v == -1:
+                #     print("v == -1", j, k)
+                cur = nums[i] + nums[j] + nums[k]
+                if cur > 0:
+                    k -= 1
+                elif cur == 0:
+                    res.add((nums[i], nums[j], nums[k]))
+                    j += 1
+                    k -= 1
+                else:
+                    j += 1
+        
+        return list(res)
