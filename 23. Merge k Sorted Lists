@@ -1,0 +1,13 @@
+
+        import heapq
+        heap = []
+        for node in lists:
+            while node:
+                heapq.heappush(heap, node.val)
+                node = node.next
+        
+        reshead = ListNode(0)
+        pre = reshead
+        while heap:
+            v = heapq.heappop(heap)
+            cur = ListNode(v)
